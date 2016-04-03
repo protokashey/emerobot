@@ -1,8 +1,8 @@
 Package:       emercoin
 Version:       0.3.7
 Maintainer:    Emercoin <support@emercoin.com>
-Architecture:  all
-Section:       net
+Architecture:  amd64
+Section:       main
 Priority:      optional
 Description:   Emercoin Service
 Depends:       pwgen, openssl

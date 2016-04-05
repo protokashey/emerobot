@@ -32,7 +32,7 @@ EOF
 chmod 600 /var/lib/emc/.emercoin/emercoin.conf
 chown -R emc.emc /var/lib/emc/.emercoin
 
-update-rc.d emercoin defaults
-service emercoin start
+update-rc.d emercoind defaults
+service emercoind start
 
 exit 0

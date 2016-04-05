@@ -10,7 +10,7 @@ getent passwd emc >/dev/null || {
 mkdir -p /etc/ssl/emc
 [ ! -f /etc/ssl/emc/emercoin.key ] || [ ! -f /etc/ssl/emc/emercoin.crt ] && openssl req -nodes -x509 -newkey rsa:4096 -keyout /etc/ssl/emc/emercoin.key -out /etc/ssl/emc/emercoin.crt -days 3560 -subj /C=US/ST=Oregon/L=Portland/O=IT/CN=emercoin.emc
 
-[ ! -f /var/lib/emc/.emercoin/emercoin.conf ] && exit 0
+[ -f /var/lib/emc/.emercoin/emercoin.conf ] && exit 0
 
 mkdir -p /var/lib/emc/.emercoin
 cat<<EOF >/var/lib/emc/.emercoin/emercoin.conf
@@ -32,7 +32,7 @@ EOF
 chmod 600 /var/lib/emc/.emercoin/emercoin.conf
 chown -R emc.emc /var/lib/emc/.emercoin
 
-update-rc.d emercoind defaults
-service emercoind start
+update-rc.d emercoin defaults
+service emercoin start
 
 exit 0

@@ -1,10 +1,17 @@
-Emercoin integration/staging tree
-================================
 
-http://emercoin.com
+* Copyright © 2009-2013 Bitcoin Developers
+* Copyright © 2013-2014 Emercoin Developers
+* Copyright © 2016 Emerobot Developer (kashey@protonmail.com)
 
-Copyright (c) 2009-2013 Bitcoin Developers
-Copyright (c) 2013-2014 Emercoin Developers
+
+What is Emerobot?
+-----------------
+
+Emerobot is a special version of Emercoin wallet equipped with onboard
+JavaScript interpreter. User custom scripts, various extensions and plugins,
+automation tools etc. can be executed inside wallet process.
+
+In other words, emerobot is a «money emacs».
 
 What is Emercoin?
 ----------------
@@ -17,6 +24,11 @@ software which enables the use of this currency.
 
 For more information, as well as an immediately useable, binary version of
 the Emercoin client software, see http://emercoin.com.
+
+Why javascript?
+---------------
+
+Because JSON format is native element of bitcoin wallet architecture.
 
 License
 -------

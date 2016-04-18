@@ -13,6 +13,10 @@ automation tools etc. can be executed inside wallet process.
 
 In other words, emerobot is a «money emacs».
 
+[API](/doc/emerobot_api.md) is available to JavaScript code.
+
+https://github.com/protokashey/emerobot/blob/master/doc/emerobot_api.md
+
 What is Emercoin?
 ----------------
 

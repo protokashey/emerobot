@@ -3,6 +3,13 @@
 # Distributed under the MIT/X11 software license, see the accompanying
 # file license.txt or http://www.opensource.org/licenses/mit-license.php.
 
+# OPENSSL_INCLUDE_PATH=/opt/openssl-compat-bitcoin/include
+# OPENSSL_LIB_PATH=/opt/openssl-compat-bitcoin/lib
+
+# BDB_INCLUDE_PATH=/usr/include/libdb4
+# BDB_LIB_SUFFIX=-4
+
+
 USE_UPNP:=0
 
 DEFS=-DBOOST_SPIRIT_THREADSAFE
@@ -115,9 +122,15 @@ OBJS= \
     obj/stun.o \
     obj/namecoin.o \
     obj/emcdns.o \
+    obj/duktape.o \
+    obj/emerobot.o \
+    obj/emerobots.o \
+    obj/emerobotrpc.o \
+    obj/emerobot_api_pctl.o \
+    obj/emerobot_api_bitcoin.o \
     obj/checkpoints_eb.o
 
-all: emercoind
+all: emerobotd
 
 # auto-generated dependencies:
 -include obj/*.P
@@ -135,7 +148,14 @@ obj/%.o: %.cpp
 	      -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
 	  rm -f $(@:%.o=%.d)
 
-emercoind: $(OBJS:obj/%=obj/%)
+obj/%.o: %.c
+	$(CXX) -c $(xCXXFLAGS) -MMD -o $@ $<
+	@cp $(@:%.o=%.d) $(@:%.o=%.P); \
+	  sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
+	      -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
+	  rm -f $(@:%.o=%.d)
+
+emerobotd: $(OBJS:obj/%=obj/%)
 	$(CXX) $(xCXXFLAGS) -rdynamic -o $@ $^ $(LDFLAGS) $(LIBS)
 
 TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
@@ -151,7 +171,7 @@ test_emercoin: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
 	$(CXX) $(xCXXFLAGS) -o $@ $(LIBPATHS) $^ -Wl,-B$(LMODE) -lboost_unit_test_framework $(LDFLAGS) $(LIBS)
 
 clean:
-	-rm -f emercoind test_emercoin
+	-rm -f emerobotd test_emercoin
 	-rm -f obj/*.o
 	-rm -f obj-test/*.o
 	-rm -f obj/*.P

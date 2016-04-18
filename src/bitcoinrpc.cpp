@@ -15,6 +15,7 @@
 #include "ui_interface.h"
 #include "base58.h"
 #include "bitcoinrpc.h"
+#include "emerobotrpc.h"
 
 #undef printf
 #include <boost/asio.hpp>
@@ -42,7 +43,7 @@ void ThreadRPCServer2(void* parg);
 
 static std::string strRPCUserColonPass;
 
-static int64 nWalletUnlockTime;
+int64 nWalletUnlockTime;
 static CCriticalSection cs_nWalletUnlockTime;
 
 extern Value dumpprivkey(const Array& params, bool fHelp);
@@ -2768,6 +2769,10 @@ static const CRPCCommand vRPCCommands[] =
     // new non-standard commands
     { "gettxlistfor",           &gettxlistfor,           false },
     { "deletetransaction",      &deletetransaction,      false },
+
+    // emerobot
+    { "spawnbot",               &spawnbot,               false },
+    { "listbots",               &listbots,               false }
 };
 
 CRPCTable::CRPCTable()

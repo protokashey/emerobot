@@ -15,7 +15,9 @@ In other words, emerobot is a «money emacs».
 
 [API](/doc/emerobot_api.md) is available to JavaScript code.
 
-https://github.com/protokashey/emerobot/blob/master/doc/emerobot_api.md
+### ACHTUNG!
+* **THERE IS AN EXPERIMENTAL CODE AT EARLY STAGE OF DEVELOPMENT.**
+* **DO NOT USE IT WITH VALUABLE AMOUNT OF MONEY**
 
 What is Emercoin?
 ----------------

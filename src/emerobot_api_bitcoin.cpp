@@ -192,6 +192,25 @@ static duk_ret_t API__getaccountaddress ( duk_context * ctx )
 }
 */
 
+static duk_ret_t API__gettxfee ( duk_context * ctx )
+{
+    duk_push_number ( ctx, nTransactionFee );
+    return 1;
+}
+
+static duk_ret_t API__settxfee ( duk_context * ctx )
+{
+    duk_double_t old, fee;
+
+    fee = duk_require_number ( ctx, 0 );
+    old = nTransactionFee;
+
+    nTransactionFee = (fee / CENT) * CENT;
+
+    duk_push_number ( ctx, old );
+    return 1;
+}
+
 
 void Emerobot::InstallAPI_bitcoin()
 {
@@ -218,6 +237,12 @@ void Emerobot::InstallAPI_bitcoin()
 
     duk_push_c_function ( ctx, API__getnewaddress, 1 );
     duk_put_prop_string ( ctx, -2, "getnewaddress" );
+
+    duk_push_c_function ( ctx, API__gettxfee, 0 );
+    duk_put_prop_string ( ctx, -2, "gettxfee" );
+
+    duk_push_c_function ( ctx, API__settxfee, 1 );
+    duk_put_prop_string ( ctx, -2, "settxfee" );
 }
 
 

@@ -66,7 +66,8 @@ Function homologous to bitcoin JSON-RPC commands
 - [ ] verifymessage
 - [ ] getwork
 - [ ] listaccounts
-- [ ] settxfee
+- [x] gettxfee
+- [x] settxfee
 - [ ] getblocktemplate
 - [ ] submitblock
 - [ ] listsinceblock
